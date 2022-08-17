@@ -28,6 +28,9 @@ function displayRamenDetails (event) {
     const ramenImg = details.querySelector('img.detail-image');
     const ramenName = details.querySelector('h2.name');
     const ramenRestaurant = details.querySelector('h3.restaurant');
+
+    const ramenRating = document.querySelector('#rating-display');
+    const ramenComment = document.querySelector('#comment-display');
     
     fetch (`${URL}/${ramenId}`)
     .then (response => response.json())
@@ -35,5 +38,7 @@ function displayRamenDetails (event) {
         ramenImg.src = ramenEntry.image;
         ramenName.textContent = ramenEntry.name;
         ramenRestaurant.textContent = ramenEntry.ramenRestaurant;
+        ramenRating.textContent = ramenEntry.rating;
+        ramenComment.textContent = ramenEntry.comment;
     })
 }
