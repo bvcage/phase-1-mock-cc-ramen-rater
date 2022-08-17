@@ -21,12 +21,11 @@ window.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
         patchExistingRamen(event.target);
     });
-
+    
     deleteForm.addEventListener('submit', (event) => {
         event.preventDefault();
         // only delete if user types delete
-        let userConfirm = event.target.querySelector('#delete-confirm');
-        userConfirm.style.color = 'red';
+        const userConfirm = event.target.querySelector('#delete-confirm');
         if (userConfirm.value.toUpperCase() === 'DELETE') {
             deleteRamen(event.target);
         } else {

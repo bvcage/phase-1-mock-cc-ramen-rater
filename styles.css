@@ -107,3 +107,7 @@ form#edit-ramen input,
 form#edit-ramen textarea {
   color: rgb(186, 186, 186);
 }
+
+form#delete-ramen input[type="text"] {
+  color: red;
+}
