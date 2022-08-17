@@ -24,8 +24,16 @@ window.addEventListener('DOMContentLoaded', () => {
 
     deleteForm.addEventListener('submit', (event) => {
         event.preventDefault();
-        deleteRamen(event.target);
-    })
+        
+        // only delete if user types delete
+        let userConfirm = event.target.querySelector('#delete-confirm');
+        console.log(userConfirm.value);
+        if (userConfirm.value.toUpperCase() === 'DELETE') {
+            deleteRamen(event.target);
+        } else {
+            userConfirm.value = "type 'DELETE' to confirm";
+        }
+    });
 
 });
 
