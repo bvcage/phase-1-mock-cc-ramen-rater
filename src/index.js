@@ -1,4 +1,5 @@
 const URL = 'http://localhost:3000/ramens';
+const NO_IMAGE = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
 
 window.addEventListener('DOMContentLoaded', () => {
 
@@ -20,7 +21,7 @@ function displayRamenImages (ramenAry) {
     const menu = document.querySelector('#ramen-menu');
     ramenAry.forEach(ramen => {
         const menuEntryImg = document.createElement('img');
-        menuEntryImg.src = ramen.image;
+        menuEntryImg.src = checkImgSrc(ramen.image);
         menuEntryImg.id = ramen.id;
         menu.append(menuEntryImg);
         menuEntryImg.addEventListener('click', displayRamenDetails);
@@ -41,7 +42,7 @@ function displayRamenDetails (event) {
     fetch (`${URL}/${ramenId}`)
     .then (response => response.json())
     .then (ramenEntry => {
-        ramenImg.src = ramenEntry.image;
+        ramenImg.src = checkImgSrc(ramenEntry.image);
         ramenName.textContent = ramenEntry.name;
         ramenRestaurant.textContent = ramenEntry.ramenRestaurant;
         ramenRating.textContent = ramenEntry.rating;
@@ -78,5 +79,11 @@ function postNewRamen (newRamenForm) {
     .then (newEntry => {
         displayRamenImages([newEntry]);
     });
+}
 
+function checkImgSrc (source) {
+    if (source.match(/\.(jpg|jpeg|png|webp|avif|gif|svg)$/) == null) {
+        source = NO_IMAGE;
+    }
+    return source;
 }
