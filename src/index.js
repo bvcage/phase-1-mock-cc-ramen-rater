@@ -3,6 +3,7 @@ const NO_IMAGE = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_a
 
 const newEntryForm = document.querySelector('#new-ramen');
 const updateForm = document.querySelector('#edit-ramen');
+const deleteForm = document.querySelector('#delete-ramen');
 
 window.addEventListener('DOMContentLoaded', () => {
 
@@ -22,6 +23,11 @@ window.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
         patchExistingRamen(event.target);
     });
+
+    deleteForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        deleteRamen(event.target);
+    })
 
 });
 
@@ -56,6 +62,7 @@ function displayRamenDetails (ramenEntry) {
         ramenRating.textContent = ramenEntry.rating;
         ramenComment.textContent = ramenEntry.comment;
         populateUpdateForm(ramenEntry);
+        populateDeleteForm(ramenEntry);
     });
 }
 
@@ -73,6 +80,11 @@ function populateUpdateForm (ramenEntry) {
     idField.value = ramenEntry.id;
     ratingField.value = ramenEntry.rating;
     commentField.value = ramenEntry.comment;
+}
+
+function populateDeleteForm (ramenEntry) {
+    const idField = deleteForm.querySelector('#ramen-id');
+    idField.value = ramenEntry.id;
 }
 
 function postNewRamen (newRamenForm) {
@@ -141,6 +153,14 @@ function patchExistingRamen (updateRamenForm) {
         displayRamenDetails(updatedRamen);  // update details display
         populateUpdateForm(updatedRamen);   // update prepopulated form
     });
+}
+
+function deleteRamen (deleteRamenForm) {
+    const ramenId = deleteRamenForm.querySelector('#ramen-id').value;
+    
+    fetch (`${URL}/${ramenId}`, {method: 'DELETE'})
+    .then (console.log(`deleted ${ramenId}`));
+
 }
 
 function checkImgSrc (source) {
