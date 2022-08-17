@@ -1,18 +1,16 @@
 const URL = 'http://localhost:3000/ramens';
 const NO_IMAGE = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
 
+const menu = document.querySelector('#ramen-menu');
+const details = document.querySelector('#ramen-detail');
+
 const newEntryForm = document.querySelector('#new-ramen');
 const updateForm = document.querySelector('#edit-ramen');
 const deleteForm = document.querySelector('#delete-ramen');
 
 window.addEventListener('DOMContentLoaded', () => {
 
-    fetch (URL)
-    .then (response => response.json())
-    .then (data => {
-        displayRamenImages(data);       // display menu images at top
-        displayRamenDetails(data[0]);   // default display details of first entry
-    });
+    populateMenu();
 
     newEntryForm.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -31,8 +29,17 @@ window.addEventListener('DOMContentLoaded', () => {
 
 });
 
+function populateMenu () {
+    fetch (URL)
+    .then (response => response.json())
+    .then (data => {
+        menu.innerHTML = '';            // clear any existing menu items
+        displayRamenImages(data);       // display menu images at top
+        displayRamenDetails(data[0]);   // default display details of first entry
+    });
+}
+
 function displayRamenImages (ramenAry) {
-    const menu = document.querySelector('#ramen-menu');
     ramenAry.forEach(ramen => {
         const menuEntryImg = document.createElement('img');
         menuEntryImg.src = checkImgSrc(ramen.image);
@@ -45,7 +52,6 @@ function displayRamenImages (ramenAry) {
 function displayRamenDetails (ramenEntry) {
     const ramenId = ramenEntry.id;
 
-    const details = document.querySelector('#ramen-detail');
     const ramenImg = details.querySelector('img.detail-image');
     const ramenName = details.querySelector('h2.name');
     const ramenRestaurant = details.querySelector('h3.restaurant');
@@ -159,7 +165,13 @@ function deleteRamen (deleteRamenForm) {
     const ramenId = deleteRamenForm.querySelector('#ramen-id').value;
     
     fetch (`${URL}/${ramenId}`, {method: 'DELETE'})
-    .then (console.log(`deleted ${ramenId}`));
+    .then ((deletedRamen) => {
+        populateMenu();
+    });
+
+}
+
+function clearDisplayDetails () {
 
 }
 
