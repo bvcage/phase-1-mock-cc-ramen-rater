@@ -75,8 +75,8 @@ function postNewRamen (newRamenForm) {
 
     fetch (URL, newRamenPost)
     .then (response => response.json())
-    .then (data => {
-        console.log(data);
+    .then (newEntry => {
+        displayRamenImages([newEntry]);
     });
 
 }
