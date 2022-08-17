@@ -34,39 +34,45 @@
     Insert comment here
   </p>
 
-  <!-- New Ramen Form -->
-  <form id="new-ramen">
-    <h4>Add New Ramen</h4>
-    <label for="name">Name: </label>
-    <input type="text" name="name" id="new-name" />
-    <label for="restaurant">Restaurant: </label>
-    <input type="text" name="restaurant" id="new-restaurant" />
-    <label for="image">Image: </label>
-    <input type="text" name="image" id="new-image" />
-    <label for="rating">Rating: </label>
-    <input type="number" name="rating" id="new-rating" />
-    <label for="new-comment">Comment: </label>
-    <textarea name="new-comment" id="new-comment"></textarea>
-    <input type="submit" value="Create" />
-  </form>
+  <div id="all-form-wrapper">
 
-  <!-- Edit Ramen Form -->
-  <form id="edit-ramen">
-    <h4>Update the Featured Ramen</h4>
-    <input type="number" id="ramen-id" hidden />
-    <label for="rating">Rating: </label>
-    <input type="number" name="rating" id="new-rating" />
-    <label for="new-comment">Comment: </label>
-    <textarea name="new-comment" id="new-comment"></textarea>
-    <input type="submit" value="Update" />
-  </form>
+    <!-- New Ramen Form -->
+    <form id="new-ramen">
+      <h4>Add New Ramen</h4>
+      <label for="name">Name: </label>
+      <input type="text" name="name" id="new-name" />
+      <label for="restaurant">Restaurant: </label>
+      <input type="text" name="restaurant" id="new-restaurant" />
+      <label for="image">Image: </label>
+      <input type="text" name="image" id="new-image" />
+      <label for="rating">Rating: </label>
+      <input type="number" name="rating" id="new-rating" />
+      <label for="new-comment">Comment: </label>
+      <textarea name="new-comment" id="new-comment"></textarea>
+      <input type="submit" value="Create" />
+    </form>
 
-  <!-- Delete Option -->
-  <form id="delete-ramen">
-    <input type="number" id="ramen-id" hidden />
-    <input type="text" name="delete-confirm" id="delete-confirm" />
-    <input type="submit" value="Delete" />
-  </form>
+    <!-- Edit Ramen Form -->
+    <form id="edit-ramen">
+      <h4>Update the Featured Ramen</h4>
+      <input type="number" id="ramen-id" hidden />
+      <label for="rating">Rating: </label>
+      <input type="number" name="rating" id="new-rating" />
+      <label for="new-comment">Comment: </label>
+      <textarea name="new-comment" id="new-comment"></textarea>
+      <input type="submit" value="Update" />
+    </form>
+
+    <!-- Delete Option -->
+    <form id="delete-ramen">
+      <h4>Delete the Featured Ramen</h4>
+      <input type="number" id="ramen-id" hidden />
+      <label for="delete-confirm">Type DELETE to delete: </label>
+      <input type="text" name="delete-confirm" id="delete-confirm" />
+      <input type="submit" value="Delete" />
+    </form>
+
+  </div>
 
 </body>
 

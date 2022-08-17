@@ -63,8 +63,13 @@ header {
   bottom: 20px;
 }
 
+#all-form-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
 form {
-  margin: 1rem 0;
+  margin: 1rem;
   width: 300px;
   display: flex;
   flex-direction: column;
