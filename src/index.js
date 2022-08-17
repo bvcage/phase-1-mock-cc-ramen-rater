@@ -131,6 +131,7 @@ function postNewRamen (newRamenForm) {
     .then (response => response.json())
     .then (newEntry => {
         displayRamenImages([newEntry]);
+        displayRamenDetails(newEntry);
         clearForm();
     });
 
