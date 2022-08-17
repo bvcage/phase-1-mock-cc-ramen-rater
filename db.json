@@ -41,52 +41,12 @@
       "comment": "Perfect for a cold night."
     },
     {
-      "name": "ramen 6",
-      "restaurant": "rest",
-      "image": "",
-      "rating": "4",
-      "comment": "ok",
-      "id": 6
-    },
-    {
-      "name": "ramen 7",
-      "restaurant": "rest",
-      "image": "",
-      "rating": "8",
-      "comment": "ok",
-      "id": 7
-    },
-    {
-      "name": "Ramen Test",
-      "restaurant": "Fav",
-      "image": "https://en.wikipedia.org/wiki/Ramen#/media/File:Shoyu_ramen,_at_Kasukabe_Station_(2014.05.05)_1.jpg",
-      "rating": "10",
-      "comment": "amazing",
-      "id": 8
-    },
-    {
-      "name": "Ramen Test",
-      "restaurant": "Fav",
-      "image": "https://commons.wikimedia.org/wiki/Category:Ramen#/media/File:Daikokuya_ramen.jpg",
-      "rating": "10",
-      "comment": "amazing",
-      "id": 9
-    },
-    {
-      "name": "Ramen Test",
-      "restaurant": "Fav",
-      "image": "assets/ramen/gyukotsu.jpg",
-      "rating": "10",
-      "comment": "amazing",
-      "id": 10
-    },
-    {
       "name": "test",
       "restaurant": "test",
-      "image": "test",
-      "rating": "3",
-      "comment": "test",
-      "id": 11
+      "image": "",
+      "rating": "1",
+      "comment": "ok",
+      "id": 6
     }
   ]
 }

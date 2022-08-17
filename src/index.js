@@ -6,7 +6,8 @@ window.addEventListener('DOMContentLoaded', () => {
     fetch (URL)
     .then (response => response.json())
     .then (data => {
-        displayRamenImages(data);
+        displayRamenImages(data);       // display menu images at top
+        displayRamenDetails(data[0]); // default display details of first entry
     });
 
     const newEntryForm = document.querySelector('#new-ramen');
@@ -24,12 +25,12 @@ function displayRamenImages (ramenAry) {
         menuEntryImg.src = checkImgSrc(ramen.image);
         menuEntryImg.id = ramen.id;
         menu.append(menuEntryImg);
-        menuEntryImg.addEventListener('click', displayRamenDetails);
+        menuEntryImg.addEventListener('click', () => displayRamenDetails(event.target));
     });
 }
 
-function displayRamenDetails (event) {
-    const ramenId = event.target.id;
+function displayRamenDetails (ramenEntry) {
+    const ramenId = ramenEntry.id;
 
     const details = document.querySelector('#ramen-detail');
     const ramenImg = details.querySelector('img.detail-image');
