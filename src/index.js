@@ -1,19 +1,26 @@
 const URL = 'http://localhost:3000/ramens';
 const NO_IMAGE = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
 
+const newEntryForm = document.querySelector('#new-ramen');
+const updateForm = document.querySelector('#edit-ramen');
+
 window.addEventListener('DOMContentLoaded', () => {
 
     fetch (URL)
     .then (response => response.json())
     .then (data => {
         displayRamenImages(data);       // display menu images at top
-        displayRamenDetails(data[0]); // default display details of first entry
+        displayRamenDetails(data[0]);   // default display details of first entry
     });
 
-    const newEntryForm = document.querySelector('#new-ramen');
     newEntryForm.addEventListener('submit', (event) => {
         event.preventDefault();
         postNewRamen(event.target);
+    });
+
+    updateForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        patchExistingRamen(event.target);
     });
 
 });
@@ -53,14 +60,17 @@ function displayRamenDetails (ramenEntry) {
 }
 
 function populateUpdateForm (ramenEntry) {
-    const updateForm = document.querySelector('#edit-ramen');
-
+    const idField = updateForm.querySelector('#ramen-id');
     const ratingField = updateForm.querySelector('#new-rating');
     const commentField = updateForm.querySelector('#new-comment');
 
-    ratingField.addEventListener('click', () => event.target.style.color = 'black');
-    commentField.addEventListener('click', () => event.target.style.color = 'black');
+    ratingField.style.color = 'rgb(186, 186, 186)';
+    commentField.style.color = 'rgb(186, 186, 186)';
 
+    ratingField.addEventListener('mousedown', () => event.target.style.color = 'black');
+    commentField.addEventListener('mousedown', () => event.target.style.color = 'black');
+
+    idField.value = ramenEntry.id;
     ratingField.value = ramenEntry.rating;
     commentField.value = ramenEntry.comment;
 }
@@ -103,6 +113,34 @@ function postNewRamen (newRamenForm) {
         ratingField.value = '';
         commentField.value = '';
     }
+}
+
+function patchExistingRamen (updateRamenForm) {
+    const ramenId = updateRamenForm.querySelector('#ramen-id').value;
+
+    const ratingField = updateRamenForm.querySelector('#new-rating');
+    const commentField = updateRamenForm.querySelector('#new-comment');
+
+    const ramenEntryUpdate = {
+        "rating" : ratingField.value,
+        "comment" : commentField.value
+    }
+
+    const patchRamenUpdate = {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(ramenEntryUpdate)
+    }
+
+    fetch (`${URL}/${ramenId}`, patchRamenUpdate)
+    .then (response => response.json())
+    .then (updatedRamen => {
+        displayRamenDetails(updatedRamen);  // update details display
+        populateUpdateForm(updatedRamen);   // update prepopulated form
+    });
 }
 
 function checkImgSrc (source) {
