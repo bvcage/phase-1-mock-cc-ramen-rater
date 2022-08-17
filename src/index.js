@@ -47,7 +47,7 @@ function displayRamenDetails (event) {
         ramenRestaurant.textContent = ramenEntry.restaurant;
         ramenRating.textContent = ramenEntry.rating;
         ramenComment.textContent = ramenEntry.comment;
-    })
+    });
 }
 
 function postNewRamen (newRamenForm) {
@@ -78,7 +78,16 @@ function postNewRamen (newRamenForm) {
     .then (response => response.json())
     .then (newEntry => {
         displayRamenImages([newEntry]);
+        clearForm();
     });
+
+    function clearForm () {
+        nameField.value = '';
+        restField.value = '';
+        imgField.value = '';
+        ratingField.value = '';
+        commentField.value = '';
+    }
 }
 
 function checkImgSrc (source) {
