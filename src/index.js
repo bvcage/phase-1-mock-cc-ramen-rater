@@ -181,9 +181,7 @@ function deleteRamen (deleteRamenForm) {
     });
 }
 
-function checkImgSrc (source) {
-    if (source.match(/\.(jpg|jpeg|png|webp|avif|gif|svg)$/) == null) {
-        source = NO_IMAGE;
-    }
-    return source;
+function checkImgSrc (url) {
+    if (!url.endsWith('.jpg')) {url = NO_IMAGE}
+    return url;
 }
