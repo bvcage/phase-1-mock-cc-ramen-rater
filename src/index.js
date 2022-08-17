@@ -44,7 +44,7 @@ function displayRamenDetails (event) {
     .then (ramenEntry => {
         ramenImg.src = checkImgSrc(ramenEntry.image);
         ramenName.textContent = ramenEntry.name;
-        ramenRestaurant.textContent = ramenEntry.ramenRestaurant;
+        ramenRestaurant.textContent = ramenEntry.restaurant;
         ramenRating.textContent = ramenEntry.rating;
         ramenComment.textContent = ramenEntry.comment;
     })
