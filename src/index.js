@@ -6,7 +6,13 @@ window.addEventListener('DOMContentLoaded', () => {
     .then (response => response.json())
     .then (data => {
         displayRamenImages(data);
-    })
+    });
+
+    const newEntryForm = document.querySelector('#new-ramen');
+    newEntryForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        postNewRamen(event.target);
+    });
 
 });
 
@@ -41,4 +47,36 @@ function displayRamenDetails (event) {
         ramenRating.textContent = ramenEntry.rating;
         ramenComment.textContent = ramenEntry.comment;
     })
+}
+
+function postNewRamen (newRamenForm) {
+    const nameField = newRamenForm.querySelector('#new-name');
+    const restField = newRamenForm.querySelector('#new-restaurant');
+    const imgField = newRamenForm.querySelector('#new-image');
+    const ratingField = newRamenForm.querySelector('#new-rating');
+    const commentField = newRamenForm.querySelector('#new-comment');
+
+    const newRamenEntry = {
+        "name" : nameField.value,
+        "restaurant" : restField.value,
+        "image" : imgField.value,
+        "rating" : ratingField.value,
+        "comment" : commentField.value
+    }
+
+    const newRamenPost = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(newRamenEntry)
+    }
+
+    fetch (URL, newRamenPost)
+    .then (response => response.json())
+    .then (data => {
+        console.log(data);
+    });
+
 }

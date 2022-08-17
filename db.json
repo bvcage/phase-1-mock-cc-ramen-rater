@@ -39,6 +39,14 @@
       "image": "./assets/ramen/kojiro.jpg",
       "rating": 6,
       "comment": "Perfect for a cold night."
+    },
+    {
+      "name": "ramen 6",
+      "restaurant": "rest",
+      "image": "",
+      "rating": "4",
+      "comment": "ok",
+      "id": 6
     }
   ]
 }
