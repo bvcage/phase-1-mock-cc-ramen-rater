@@ -24,14 +24,14 @@ window.addEventListener('DOMContentLoaded', () => {
 
     deleteForm.addEventListener('submit', (event) => {
         event.preventDefault();
-        
         // only delete if user types delete
         let userConfirm = event.target.querySelector('#delete-confirm');
-        console.log(userConfirm.value);
+        userConfirm.style.color = 'red';
         if (userConfirm.value.toUpperCase() === 'DELETE') {
             deleteRamen(event.target);
         } else {
             userConfirm.value = "type 'DELETE' to confirm";
+            userConfirm.addEventListener('mousedown', () => userConfirm.value = '');
         }
     });
 
@@ -98,7 +98,10 @@ function populateUpdateForm (ramenEntry) {
 
 function populateDeleteForm (ramenEntry) {
     const idField = deleteForm.querySelector('#ramen-id');
+    const userConfirm = deleteForm.querySelector('#delete-confirm');
+
     idField.value = ramenEntry.id;
+    userConfirm.value = '';
 }
 
 function postNewRamen (newRamenForm) {
@@ -176,11 +179,6 @@ function deleteRamen (deleteRamenForm) {
     .then ((deletedRamen) => {
         populateMenu();
     });
-
-}
-
-function clearDisplayDetails () {
-
 }
 
 function checkImgSrc (source) {
