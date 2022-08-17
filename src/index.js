@@ -48,7 +48,21 @@ function displayRamenDetails (ramenEntry) {
         ramenRestaurant.textContent = ramenEntry.restaurant;
         ramenRating.textContent = ramenEntry.rating;
         ramenComment.textContent = ramenEntry.comment;
+        populateUpdateForm(ramenEntry);
     });
+}
+
+function populateUpdateForm (ramenEntry) {
+    const updateForm = document.querySelector('#edit-ramen');
+
+    const ratingField = updateForm.querySelector('#new-rating');
+    const commentField = updateForm.querySelector('#new-comment');
+
+    ratingField.addEventListener('click', () => event.target.style.color = 'black');
+    commentField.addEventListener('click', () => event.target.style.color = 'black');
+
+    ratingField.value = ramenEntry.rating;
+    commentField.value = ramenEntry.comment;
 }
 
 function postNewRamen (newRamenForm) {
